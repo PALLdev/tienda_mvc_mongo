@@ -1,0 +1,29 @@
+<%- include('../includes/head.ejs') %>
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+            <main class="section-spacing">
+                <% if (orders.length> 0) { %>
+                    <h1 class="align-center">Tus pedidos</h1>
+                    <ul>
+                    <% orders.forEach(order => { %>
+                        <li>
+                            <h2># <%= order._id %></h2>
+                            <ul>
+                                <% order.items.forEach(producto => { %>
+                                    <li><%= producto.titulo %> (<%= producto.cantidad %>)</li>
+                                <% }); %>
+                            </ul>
+                        </li>
+                    <% }); %>
+                    </ul>
+
+                <% } else { %>
+                    <h2 class="align-center">Aún no tienes pedidos.</h2>
+                <% } %>
+            </main>
+
+            <%- include('../includes/end.ejs') %>

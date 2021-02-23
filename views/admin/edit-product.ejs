@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/form.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main class="section-spacing align-center">
+                <form action="/admin/<% if(editing){ %>edit-product<% } else { %>add-product<% } %>" method="POST" class="product-form section-spacing">
+                    
+                    <div class="form-control">
+                        <label for="title">Nombre producto</label>
+                        <input type="text" name="titulo" id="title" value="<% if(editing){ %><%= product.titulo %><% } %>">
+                    </div>
+
+                    <div class="form-control">
+                        <label for="imageURL">URL de imagen</label>
+                        <input type="text" name="urlImagen" id="imageURL" value="<% if(editing){ %><%= product.urlImagen %><% } %>">
+                    </div>
+                    
+                    <div class="form-control">
+                        <label for="price">Precio</label>
+                        <input type="number" name="precio" id="price" value="<% if(editing){ %><%= product.precio %><% } %>">
+                    </div>
+
+                    <div class="form-control">
+                        <label for="description">Descripción</label>
+                        <textarea name="descripcion" id="description" rows="3"><% if(editing){ %><%= product.descripcion %><% } %></textarea>
+                    </div>
+                    <% if(editing) { %>
+                        <input type="hidden" name="productId" value="<%= product._id %>">
+                    <% } %>
+                    <div>
+                        <button class="btn" type="submit"><% if(editing) { %>Guardar cambios<% } else{ %>Agregar producto<% } %></button>
+                    </div>
+                </form>
+            </main>
+            <%- include('../includes/end.ejs') %>

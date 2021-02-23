@@ -1,0 +1,21 @@
+.product-item {
+    width: 18.5rem;
+    max-width: 95%;
+}
+
+.product__title {
+    font-size: 1.1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.card__content .product__price {
+    text-align: center;
+    color: #4d4d4d;
+    margin-bottom: .5rem;
+}
+
+.product__description {
+    text-align: center;
+    font-size: .95rem;
+}

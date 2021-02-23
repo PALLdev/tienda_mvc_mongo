@@ -1,0 +1,44 @@
+.product-form {
+    width: 30rem;
+    max-width: 90%;
+    margin: auto;
+}
+
+.form-control {
+    margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+    display: block;
+    width: 100%;
+}
+
+.form-control label {
+    margin-bottom: .2rem;
+}
+
+.form-control input,
+.form-control textarea {
+    border: thin solid orangered;
+    font: inherit;
+    border-radius: 3px;
+    margin-bottom: .5rem;
+    padding: 4px 6px;
+}
+
+.form-control textarea {
+    resize: none;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+    outline-color: orangered;
+}
+
+.form-control input:-moz-focusring,
+.form-control textarea:-moz-focusring {
+    outline: 1px solid orangered;
+    -moz-outline-radius: 3px;
+}

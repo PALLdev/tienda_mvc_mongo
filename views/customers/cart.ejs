@@ -1,0 +1,91 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/cart.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+            <main>
+                <div class="products-container section-spacing">
+                    <% if(products.length> 0) { %>
+                        <table>
+                            <tr>
+                                <th>Producto</th>
+                                <th class="align-center">Cantidad</th>
+                                <th class="align-center">Subtotal</th>
+                                <th>
+                                    <svg class="trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20"
+                                        height="20">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path
+                                            d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z" />
+                                    </svg>
+                                </th>
+                            </tr>
+                            <% products.forEach((prod)=> { %>
+                                <tr class="tr1">
+                                    <td>
+                                        <div class="cart-prod-info">
+                                            <img src="<%= prod.urlImagen %>" alt="<%= prod.titulo %>">
+                                            <div>
+                                                <h2>
+                                                    <%= prod.titulo %>
+                                                </h2>
+                                                <small>Precio: $<%= prod.precio %></small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-center">
+                                        <%= prod.cantidad %>
+                                    </td>
+                                    <td class="align-center">
+                                        <%= prod.precio * prod.cantidad %>
+                                    </td>
+                                    <td>
+                                        <form action="/cart-delete-item" method="POST">
+                                            <button class="btn-svg">
+                                                <i><svg class="equis" xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 24 24" width="31" height="31">
+                                                        <path fill="none" d="M0 0h24v24H0z" />
+                                                        <path
+                                                            d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                                                    </svg></i>
+                                                <input type="hidden" name="idCartItem" value="<%= prod._id %>">
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </table>
+                </div>
+
+                <div class="total-price">
+                    <table>
+                        <tr>
+                            <td>Subtotal:</td>
+                            <td>$25000</td>
+                        </tr>
+                        <tr>
+                            <td>Impuesto de envio:</td>
+                            <td>$3000</td>
+                        </tr>
+                        <tr>
+                            <td>Total:</td>
+                            <td>$28000</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Checkout button -->
+                <form action="/add-order" method="POST" class="align-center">
+                    <button type="submit" class="btn">Pedir ya!!</button>
+                    <input type="hidden" name="idPedido" value="">
+                </form>
+
+                <% } else { %>
+                    <h2 class="align-center">Aún no tienes productos en tu carro.</h2>
+                    <% } %>
+
+            </main>
+
+            <%- include('../includes/end.ejs') %>

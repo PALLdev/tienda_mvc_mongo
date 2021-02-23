@@ -1,0 +1,46 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <section class="main-header__container">
+        <div class="main-header__logo">
+            <a href="/">PERROSHOP</a>
+        </div>
+
+        <nav class="main-header__nav">
+            <!-- si la variable path que recibo desde el render es / agrego active a la class, sino queda class="" (vacia) -->
+            <a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a>
+            <a href="/products" class="<%= path === '/products' ? 'active' : '' %>">Productos</a>
+            <a href="/cart" class="<%= path === '/cart' ? 'active' : '' %>">Mi Carro</a>
+            <a href="/orders" class="<%= path === '/orders' ? 'active' : '' %>">Mis pedidos</a>
+            <a href="/admin/add-product" class="<%= path === '/admin/add-product' ? 'active' : '' %>">Agregar
+            producto</a>
+            <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : '' %>">Admin Productos</a>
+        </nav>
+
+        <button id="side-menu-toggle">Menu</button>
+    </section>
+</header>
+
+<nav class="mobile-nav">
+    <ul class="mobile-nav__item-list">
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Productos</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Tu Carro</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Tus Pedidos</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Nuevo Producto
+                </a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Productos
+                </a>
+            </li>
+        </ul>
+</nav>

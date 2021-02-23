@@ -1,0 +1,227 @@
+html,
+body {
+    box-sizing: border-box;
+    /* puede que tenga que quitarlas */
+    margin: 0;
+    padding: 0;
+    /* ----------------------------- */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.ocultar {
+    display: none;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.section-spacing {
+    margin: 2rem auto;
+}
+
+.image {
+    height: 18rem;
+}
+
+.image img {
+    height: 100%;
+}
+
+.main-header {
+    width: 100%;
+    height: 3.5rem;
+    background-color: rgb(98, 45, 136);
+}
+
+.main-header__container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header__logo a {
+    color: rgb(243, 183, 72);
+    font-weight: bold;
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.main-header__nav a {
+    color: papayawhip;
+    margin: 0 1rem;
+}
+
+.main-header__nav a:hover,
+.main-header__nav a:active,
+.main-header__nav a.active {
+    color: rgb(243, 183, 72);
+}
+
+/* RESPONSIVE MENU */
+.mobile-nav {
+    width: 30rem;
+    height: 100vh;
+    max-width: 90%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: white;
+    z-index: 10;
+    padding: 2rem 1rem 1rem 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+  }
+  
+.mobile-nav.open {
+    transform: translateX(0);
+}
+  
+.mobile-nav__item-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+  
+.mobile-nav__item {
+    margin: 1rem;
+    padding: 0;
+}
+  
+.mobile-nav__item a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    padding: 0.5rem 2rem;
+}
+  
+.mobile-nav__item a:active,
+.mobile-nav__item a:hover,
+.mobile-nav__item a.active {
+    background:  rgb(98, 45, 136);
+    color: white;
+    border-radius: 3px;
+}
+  
+#side-menu-toggle {
+    border: 1px solid white;
+    font: inherit;
+    padding: 0.5rem;
+    margin-right: .7rem;
+    display: block;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+  
+#side-menu-toggle:focus {
+    outline: none;
+}
+  
+#side-menu-toggle:active,
+#side-menu-toggle:hover {
+    color: rgb(243, 183, 72);
+    border-color: rgb(243, 183, 72);
+}
+  
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    display: none;
+}
+
+/* CARDS */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+  }
+  
+.card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    margin-bottom: 3rem;
+    background-color: whitesmoke;
+}
+
+  
+.card__header,
+.card__content {
+    padding: .7rem;
+}
+  
+.card__header h1,
+.card__content h1,
+.card__content h2,
+.card__content p {
+    margin: 0;
+}
+  
+.card__image {
+    width: 100%;
+}
+  
+.card__image img {
+    width: 100%;
+    max-height: 260px;
+    object-fit: cover;
+}
+  
+.card__actions {
+    display: flex;
+    justify-content: center;
+    padding: .2rem;
+    margin-bottom: .7rem;
+}
+  
+.card__actions button,
+.card__actions a {
+      margin: 0 0.25rem;
+}
+
+  /* BOTONES */
+.btn {
+    background-color:  rgb(98, 45, 136);
+    color: whitesmoke;
+    display: inline-block;
+    font-weight: bold;
+    width: max-content;
+    font: inherit;
+    font-size: 1.1rem;
+    padding: .2rem 1rem;
+    border-radius: 20px;
+    border: 1.5px inset rgb(221, 169, 71);
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: rgba(98, 45, 136, .9);
+    color: rgb(243, 183, 72);
+}
+
+.btn-delete:hover,
+.btn-delete:active {
+    background-color: rgba(226, 10, 46, 0.6);
+    color: white;
+}

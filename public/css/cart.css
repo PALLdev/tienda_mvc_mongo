@@ -1,0 +1,90 @@
+/* cart items */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    background-color: rgba(84, 2, 122, 0.945);
+    color: #fff;
+    padding: .5rem;
+}
+
+th:last-child {
+    text-align: right;
+}
+
+.products-container td:not(:last-child) {
+    padding: .1rem .5rem;
+}
+
+.products-container td:last-child {
+    text-align: right;
+}
+
+.btn-svg {
+    border: none;
+    background-color: #fff;
+}
+
+.equis {
+    fill: red;
+    vertical-align: middle;
+    transition: all ease;
+}
+
+.equis:hover {
+    fill: rgba(255, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.trash {
+    fill: #fff;
+    vertical-align: middle;
+    margin-right: 0.440rem;
+}
+
+.tr1:not(:last-child) {
+    border-bottom: 1px solid rgba(84, 2, 122, 0.3);
+}
+
+.cart-prod-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.cart-prod-info img {
+    width: 80px;
+    height: 80px;
+    margin-right: .5rem;
+    object-fit: cover;
+}
+
+.cart-prod-info h2 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: auto;
+}
+
+.total-price {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-price table {
+    margin-top: -0.9rem;
+    display: inline-block;
+    border-top: 3px solid rgba(84, 2, 122, 0.3);
+    width: 100%;
+    max-width: 40%;
+    padding: 1rem 1.5rem 0;
+}
+
+.total-price table td:last-child {
+    display: inline-block;
+    margin-inline-start: 7rem;
+}
+
