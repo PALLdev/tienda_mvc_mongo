@@ -1,10 +1,10 @@
 const path = require("path");
 const express = require("express");
 const parser = require("body-parser");
+const mongoose = require("mongoose");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const errorsController = require("./controllers/errors");
-const mongoConnect = require("./util/database").mongoConnect;
 const User = require("./models/user");
 
 const app = express();
@@ -19,10 +19,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // PASANDO USER AL REQUEST (user creado manualmente)
 app.use((req, res, next) => {
-  // lo paso como string ya que el argument id viene como ObjectId desde el model
-  User.findById("6033a211ed1f2f11b78117be")
+  User.findById("6036e0cd2ea0191a6c670fe5")
     .then((user) => {
-      req.user = new User(user.nombre, user.email, user.carro, user._id);
+      req.user = user;
       next();
     })
     .catch((err) => {
@@ -35,6 +34,27 @@ app.use(shopRoutes);
 
 app.use(errorsController.error404Page);
 
-mongoConnect(() => {
-  app.listen(port);
-});
+mongoose
+  .connect(
+    "mongodb+srv://pablo:3JXB1EkNJPWkoC8C@cluster0.cfo6t.mongodb.net/shop?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then((result) => {
+    // findOne with no arguments devuelve el primero que obtenga (el unico user en este caso)
+    User.findOne().then((user) => {
+      if (!user) {
+        const u = new User({
+          nombre: "admin",
+          email: "admin@test.com",
+          carro: { items: [] },
+        });
+        u.save();
+      }
+    });
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });

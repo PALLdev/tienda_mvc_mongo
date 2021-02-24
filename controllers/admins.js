@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 
 exports.getAdminProductsPage = (req, res, next) => {
-  Product.fetchAll()
+  Product.find()
     .then((products) => {
       res.render("admin/products", {
         docTitle: "Administrar productos",
@@ -29,14 +29,14 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.precio;
   const description = req.body.descripcion;
 
-  const product = new Product(
-    null,
-    title,
-    price,
-    description,
-    imgURL,
-    req.user._id
-  );
+  const product = new Product({
+    titulo: title,
+    precio: price,
+    descripcion: description,
+    urlImagen: imgURL,
+    userId: req.user, // en mongoose puedo mandar el user object y guardara el valor del id en la variable (req.user._id)
+  });
+
   product
     .save()
     .then(() => {
@@ -58,9 +58,7 @@ exports.getEditProductPage = (req, res, next) => {
   const prodId = req.params.productId;
 
   Product.findById(prodId)
-    // Product.findByPk(prodId)
     .then((product) => {
-      // const product = products[0];
       if (!product) {
         // si no encuentro el producto redirecciono, aunque deberia mostrar un mensaje de error
         return res.redirect("/");
@@ -85,17 +83,15 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = req.body.precio;
   const updatedDescription = req.body.descripcion;
 
-  const updatedProduct = new Product(
-    prodId,
-    updatedTitle,
-    updatedPrice,
-    updatedDescription,
-    updatedImgUrl,
-    req.user._id
-  );
-
-  updatedProduct
-    .save()
+  Product.findById(prodId)
+    .then((product) => {
+      product.titulo = updatedTitle;
+      product.precio = updatedPrice;
+      product.descripcion = updatedDescription;
+      product.urlImagen = updatedImgUrl;
+      product.userId = req.user;
+      return product.save();
+    })
     .then(() => {
       console.log("Producto actualizado exitosamente!!");
       res.redirect("/admin/products");
@@ -107,9 +103,11 @@ exports.postEditProduct = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.idProducto;
-  Product.deleteById(prodId)
+  Product.findByIdAndDelete(prodId)
     .then(() => {
-      req.user.deleteItemFromCart(prodId);
+      return req.user.deleteFromCart(prodId);
+    })
+    .then(() => {
       console.log("Producto borrado exitosamente!!");
       res.redirect("/admin/products");
     })

@@ -13,11 +13,11 @@ expRouter.get("/orders", shopsController.getOrdersPage);
 
 expRouter.post("/add-order", shopsController.postAddOrder);
 
-// expRouter.get("/checkout", shopsController.getCheckoutPage);
+// // expRouter.get("/checkout", shopsController.getCheckoutPage);
 
 expRouter.get("/products", shopsController.getProductsPage);
 
-// ruta dinamica (page detalle producto)
+// // ruta dinamica (page detalle producto)
 expRouter.get("/products/:productId", shopsController.getDetailsPage);
 
 expRouter.get("/", shopsController.getHomePage);
