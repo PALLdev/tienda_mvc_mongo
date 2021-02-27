@@ -8,6 +8,7 @@ exports.getProductsPage = (req, res, next) => {
         prods: products,
         docTitle: "Mis Productos",
         path: "/products",
+        isAuthenticated: req.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -24,6 +25,7 @@ exports.getDetailsPage = (req, res, next) => {
         product: product,
         docTitle: `Detalles ${product.titulo}`,
         path: "/products",
+        isAuthenticated: req.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -38,6 +40,7 @@ exports.getHomePage = (req, res, next) => {
         docTitle: "Home Page Tienda Online",
         path: "/",
         prods: products,
+        isAuthenticated: req.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -55,6 +58,7 @@ exports.getCartPage = (req, res, next) => {
         docTitle: "Pagina del carro",
         path: "/cart",
         products: cartProds,
+        isAuthenticated: req.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -97,6 +101,7 @@ exports.getOrdersPage = (req, res, next) => {
         docTitle: "Pagina de tus pedidos",
         path: "/orders",
         orders: orders,
+        isAuthenticated: req.isLoggedIn,
       });
     })
     .catch((err) => {

@@ -11,11 +11,17 @@
             <a href="/products" class="<%= path === '/products' ? 'active' : '' %>">Productos</a>
             <a href="/cart" class="<%= path === '/cart' ? 'active' : '' %>">Mi Carro</a>
             <a href="/orders" class="<%= path === '/orders' ? 'active' : '' %>">Mis pedidos</a>
+            <% if(isAuthenticated) { %>
             <a href="/admin/add-product" class="<%= path === '/admin/add-product' ? 'active' : '' %>">Agregar
             producto</a>
             <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : '' %>">Admin Productos</a>
+            <% } %>
+            
         </nav>
 
+        <div class="main-header__nav">
+            <a href="/login" class="<%= path === '/login' ? 'active' : '' %> btn">Login</a>
+        </div>
         <button id="side-menu-toggle">Menu</button>
     </section>
 </header>
@@ -34,13 +40,16 @@
             <li class="mobile-nav__item">
                 <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Tus Pedidos</a>
             </li>
-            <li class="mobile-nav__item">
+            <!-- <li class="mobile-nav__item">
                 <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Nuevo Producto
                 </a>
             </li>
             <li class="mobile-nav__item">
                 <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Productos
                 </a>
+            </li> -->
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
             </li>
         </ul>
 </nav>
