@@ -8,7 +8,7 @@ exports.getProductsPage = (req, res, next) => {
         prods: products,
         docTitle: "Mis Productos",
         path: "/products",
-        isAuthenticated: req.isLoggedIn,
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -25,7 +25,7 @@ exports.getDetailsPage = (req, res, next) => {
         product: product,
         docTitle: `Detalles ${product.titulo}`,
         path: "/products",
-        isAuthenticated: req.isLoggedIn,
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -40,7 +40,7 @@ exports.getHomePage = (req, res, next) => {
         docTitle: "Home Page Tienda Online",
         path: "/",
         prods: products,
-        isAuthenticated: req.isLoggedIn,
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -49,6 +49,7 @@ exports.getHomePage = (req, res, next) => {
 };
 
 exports.getCartPage = (req, res, next) => {
+  // console.log(req.user);
   req.user
     .populate("carro.items.productId") // agregando todo el producto al user object
     .execPopulate()
@@ -58,7 +59,7 @@ exports.getCartPage = (req, res, next) => {
         docTitle: "Pagina del carro",
         path: "/cart",
         products: cartProds,
-        isAuthenticated: req.isLoggedIn,
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -101,7 +102,7 @@ exports.getOrdersPage = (req, res, next) => {
         docTitle: "Pagina de tus pedidos",
         path: "/orders",
         orders: orders,
-        isAuthenticated: req.isLoggedIn,
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {

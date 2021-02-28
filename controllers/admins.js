@@ -7,7 +7,7 @@ exports.getAdminProductsPage = (req, res, next) => {
         docTitle: "Administrar productos",
         path: "/admin/products",
         prods: products,
-        isAuthenticated: req.isLoggedIn,
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {
@@ -20,7 +20,7 @@ exports.getAddProductPage = (req, res, next) => {
     docTitle: "Formulario",
     path: "/admin/add-product",
     editing: false,
-    isAuthenticated: req.isLoggedIn,
+    isAuthenticated: req.session.isLoggedIn,
   });
 };
 
@@ -71,7 +71,7 @@ exports.getEditProductPage = (req, res, next) => {
         path: "/admin/edit-product",
         editing: true,
         product: product,
-        isAuthenticated: req.isLoggedIn,
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {
