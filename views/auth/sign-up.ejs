@@ -1,30 +1,86 @@
-<%- include('../includes/head.ejs') %>
-<link rel="stylesheet" href="/css/auth.css">    
-    <link rel="stylesheet" href="/css/form.css">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= docTitle %></title>
+    <link rel="stylesheet" href="/css/auth.css">
 </head>
 
 <body>
-   <%- include('../includes/navigation.ejs') %>
 
-    <main>
-        <form class="login-form" action="/signup" method="POST">
-            <div class="form-control">
-                <label for="name">Tu nombre</label>
-                <input type="text" name="name" id="name">
+    <div class="login-page">
+        <div class="box">
+            <div class="left">
+                <h3>Crea una cuenta</h3>
+                <button type="button" class="register-btn">Registro</button>
             </div>
-            <div class="form-control">
-                <label for="email">E-Mail</label>
-                <input type="email" name="email" id="email">
+            <div class="right">
+                <h3>Ya tienes una cuenta ?</h3>
+                <button type="button" class="login-btn">Login</button>
             </div>
-            <div class="form-control">
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password">
+            <div class="form">
+                 <!-- Login form Start -->
+                 <div class="login-form">
+                     <h3>Log In</h3>
+                     <div class="form-group">
+                         <input type="text" placeholder="Email Address*" class="form-control">
+                     </div>
+                     <div class="form-group">
+                         <input type="password" placeholder="Password*" class="form-control">
+                     </div>
+                     <div class="form-group">
+                         <label>
+                             <input type="checkbox"> Recuerdame
+                         </label>
+                     </div>
+                     <button type="button" class="submit-btn">Login</button>
+                     <p><a class="lost-pass-btn">¿Olvidaste tu contraseña?</a></p>
+                 </div>
+                 <!-- Login form End -->
+   
+                <!-- Register form Start -->
+                <form action="/signup" method="POST">
+                    <div class="register-form form-hidden">
+                        <h3>Registro</h3>
+                        <div class="form-group">
+                            <input type="text" placeholder="Nombre*" class="form-control" name="name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email*" class="form-control" name="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Contraseña*" class="form-control" name="password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Confirmar contraseña*" class="form-control" name="confirmPassword">
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Registrar</button>
+                    </div>
+                </form>
+                 <!-- Register form End -->
+   
+                 <!-- Lost Password form Start -->
+                 <div class="lost-password-form form-hidden">
+                     <h3>¿Perdiste tu contraseña?</h3>
+                     <h5>Se te enviará un link para crear tu nueva contraseña via email.</h5>
+                     
+                     <div class="form-group">
+                         <input type="text" placeholder="Email Address*" class="form-control">
+                     </div>
+                     
+                     
+                     <button type="button" class="submit-btn">Resetear Contraseña</button>
+                     <p><a href="" class="login-btn">Login</a></p>
+                 </div>
+                 <!-- Lost Password form End -->
+   
             </div>
-            <div class="form-control">
-                <label for="confirmPassword">Confirmar Contraseña</label>
-                <input type="password" name="confirmPassword" id="confirmPassword">
-            </div>
-            <button class="btn" type="submit">Registrame</button>
-        </form>
-    </main>
-<%- include('../includes/end.ejs') %>
+        </div>
+    </div>
+    <script src="/js/signin.js"></script>
+</body>
+
+</html>
