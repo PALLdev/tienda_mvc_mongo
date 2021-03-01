@@ -30,3 +30,39 @@ exports.postLogout = (req, res, next) => {
     res.redirect("/");
   });
 };
+
+exports.getRegistroPage = (req, res, next) => {
+  res.render("auth/sign-up", {
+    docTitle: "Pagina de Registro",
+    path: "/signup",
+    isAuthenticated: false,
+  });
+};
+
+exports.postRegistro = (req, res, next) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
+
+  User.findOne({ email: email })
+    .then((userDoc) => {
+      if (userDoc) {
+        return res.redirect("/signup");
+      }
+      // si no existe un user con ese email, creo un nuevo user
+      const user = new User({
+        nombre: name,
+        email: email,
+        contraseña: password,
+        carro: { items: [] },
+      });
+      return user.save();
+    })
+    .then((result) => {
+      res.redirect("/login");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

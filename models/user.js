@@ -11,6 +11,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  contraseña: {
+    type: String,
+    required: true,
+  },
   carro: {
     items: [
       {

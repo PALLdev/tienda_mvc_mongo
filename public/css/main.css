@@ -59,6 +59,14 @@ main {
     margin-left: 1rem;
 }
 
+.main-header__nav {
+    height: 100%;
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+  }
+
 .main-header__nav a {
     color: papayawhip;
     margin: 0 1rem;
@@ -102,11 +110,16 @@ main {
     padding: 0;
 }
   
-.mobile-nav__item a {
-    text-decoration: none;
-    color: black;
-    font-size: 1.5rem;
-    padding: 0.5rem 2rem;
+.mobile-nav__item a,
+.mobile-nav__item button {
+  font: inherit;
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  padding: 0.5rem 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
   
 .mobile-nav__item a:active,
@@ -225,3 +238,14 @@ main {
     background-color: rgba(226, 10, 46, 0.6);
     color: white;
 }
+
+@media (min-width: 768px) {
+    .main-header__nav {
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    #side-menu-toggle {
+      display: none;
+    }
+  }

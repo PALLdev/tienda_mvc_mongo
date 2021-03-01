@@ -19,7 +19,7 @@ const store = new MongoDBStore({
 });
 
 app.set("view engine", "ejs"); // definiendo el template engine
-app.set("views", "views"); // definiendo donde estan mis views
+app.set("views", "views"); // definiendo donde estan mis views (redundant)
 
 app.use(parser.urlencoded({ extended: false }));
 // dando acceso a mi carpeta public (read only)
@@ -57,17 +57,6 @@ app.use(errorsController.error404Page);
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
-    // findOne with no arguments devuelve el primero que obtenga (el unico user en este caso)
-    User.findOne().then((user) => {
-      if (!user) {
-        const u = new User({
-          nombre: "admin",
-          email: "admin@test.com",
-          carro: { items: [] },
-        });
-        u.save();
-      }
-    });
     app.listen(port, () => {
       console.log(`Server running on port ${port}`);
     });

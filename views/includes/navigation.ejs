@@ -22,6 +22,7 @@
         <div class="main-header__nav">
             <% if(!isAuthenticated) { %>
                 <a href="/login" class="<%= path === '/login' ? 'active' : '' %> btn">Login</a>
+                <a class="<%= path === '/signup' ? 'active' : '' %> btn" href="/signup">Registrarme</a>
                 <% } else { %>
                     <form action="/logout" method="POST">
                         <button class="btn" type="submit">Logout</button>
@@ -59,6 +60,9 @@
             <% if(!isAuthenticated) { %>
                 <li class="mobile-nav__item">
                     <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Registrarme</a>
                 </li>
                 <% } else {%>
                     <li class="mobile-nav__item">
