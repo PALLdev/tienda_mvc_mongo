@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const bcrypt = require("bcryptjs");
 
 exports.getLoginPage = (req, res, next) => {
   res.render("auth/login", {
@@ -50,18 +51,23 @@ exports.postRegistro = (req, res, next) => {
       if (userDoc) {
         return res.redirect("/signup");
       }
-      // si no existe un user con ese email, creo un nuevo user
-      const user = new User({
-        nombre: name,
-        email: email,
-        contraseña: password,
-        carro: { items: [] },
-      });
-      return user.save();
+      // si no existe un user con ese email, hasheo el pass para el new user
+      return bcrypt
+        .hash(password, 12)
+        .then((hashedPassword) => {
+          const user = new User({
+            nombre: name,
+            email: email,
+            contraseña: hashedPassword,
+            carro: { items: [] },
+          });
+          return user.save();
+        })
+        .then((result) => {
+          res.redirect("/login");
+        });
     })
-    .then((result) => {
-      res.redirect("/login");
-    })
+
     .catch((err) => {
       console.log(err);
     });
