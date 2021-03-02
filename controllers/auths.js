@@ -1,24 +1,32 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
-exports.getLoginPage = (req, res, next) => {
-  res.render("auth/login", {
-    docTitle: "Pagina de login",
-    path: "/login",
-    isAuthenticated: false,
-  });
-};
-
 exports.postLogin = (req, res, next) => {
-  User.findById("6036e0cd2ea0191a6c670fe5")
+  const email = req.body.email;
+  const password = req.body.password;
+
+  User.findOne({ email: email })
     .then((user) => {
-      req.session.user = user;
-      req.session.isLoggedIn = true;
-      // ensuring that your session has been created
-      req.session.save((err) => {
-        console.log(err);
-        res.redirect("/");
-      });
+      if (!user) {
+        return res.redirect("/signup");
+      }
+      return bcrypt
+        .compare(password, user.contraseña)
+        .then((validPassword) => {
+          // if passwords are equal (return true)
+          if (validPassword) {
+            req.session.user = user;
+            req.session.isLoggedIn = true;
+            return req.session.save((err) => {
+              res.redirect("/");
+            });
+          }
+          res.redirect("/signup");
+        })
+        .catch((err) => {
+          console.log(err);
+          res.redirect("/signup");
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -64,7 +72,8 @@ exports.postRegistro = (req, res, next) => {
           return user.save();
         })
         .then((result) => {
-          res.redirect("/login");
+          res.redirect("/signup");
+          console.log("registrado, logeate!");
         });
     })
 
