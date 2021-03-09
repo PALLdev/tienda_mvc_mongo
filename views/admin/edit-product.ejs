@@ -30,6 +30,7 @@
                         <input type="hidden" name="productId" value="<%= product._id %>">
                     <% } %>
                     <div>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <button class="btn" type="submit"><% if(editing) { %>Guardar cambios<% } else{ %>Agregar producto<% } %></button>
                     </div>
                 </form>

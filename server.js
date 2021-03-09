@@ -10,6 +10,7 @@ const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
 const User = require("./models/user");
 const MONGODB_URI = require("./util/database");
+const csrf = require("csurf");
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,8 @@ const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sesiones",
 });
+
+const csrfProtection = csrf();
 
 app.set("view engine", "ejs"); // definiendo el template engine
 app.set("views", "views"); // definiendo donde estan mis views (redundant)
@@ -35,6 +38,8 @@ app.use(
     store: store,
   })
 );
+// after the session is initialized bc csurf uses it
+app.use(csrfProtection);
 
 // using session data to create mongoose user model y pasarselo al request
 app.use((req, res, next) => {
@@ -47,6 +52,14 @@ app.use((req, res, next) => {
       next();
     })
     .catch((err) => console.log(err));
+});
+
+app.use((req, res, next) => {
+  // set local variables that are passed into the views
+  // for every request executed these fields will be set for the view rendered
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
 });
 
 app.use("/admin", adminRoutes);

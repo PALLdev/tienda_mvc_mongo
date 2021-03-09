@@ -40,7 +40,6 @@ exports.getHomePage = (req, res, next) => {
         docTitle: "Home Page Tienda Online",
         path: "/",
         prods: products,
-        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => {

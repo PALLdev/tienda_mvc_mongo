@@ -1,10 +1,10 @@
 <div class="backdrop"></div>
 <header class="main-header">
     <section class="main-header__container">
+        
         <div class="main-header__logo">
             <a href="/">PERROSHOP</a>
         </div>
-
         <nav class="main-header__nav">
             <!-- si la variable path que recibo desde el render es / agrego active a la class, sino queda class="" (vacia) -->
             <a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a>
@@ -15,19 +15,14 @@
                 <a href="/admin/add-product" class="<%= path === '/admin/add-product' ? 'active' : '' %>">Agregar
                     producto</a>
                 <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : '' %>">Admin Productos</a>
-                <% } %>
-
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button class="btn" type="submit">Cerrar sesión</button>
+                </form>
+            <% } else { %>
+                <a class="<%= path === '/signup' ? 'active' : '' %> btn" href="/signup">¡Quiero comprar!</a>      
+            <% } %>
         </nav>
-
-        <div class="main-header__nav">
-            <% if(!isAuthenticated) { %>
-                <a class="<%= path === '/signup' ? 'active' : '' %> btn" href="/signup">¡Quiero comprar!</a>
-                <% } else { %>
-                    <form action="/logout" method="POST">
-                        <button class="btn" type="submit">Cerrar sesión</button>
-                    </form>
-                    <% } %>
-        </div>
         <button id="side-menu-toggle">Menu</button>
     </section>
 </header>
@@ -63,6 +58,7 @@
                 <% } else {%>
                     <li class="mobile-nav__item">
                         <form action="/logout" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <button class="btn" type="submit">Cerrar sesión</button>
                         </form>
                     </li>   

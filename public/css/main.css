@@ -14,6 +14,10 @@ a {
     text-decoration: none;
 }
 
+button {
+    outline: none;
+}
+
 main {
     width: 85%;
     margin: 0 auto;
@@ -225,18 +229,25 @@ main {
     border: 1.5px inset rgb(221, 169, 71);
     cursor: pointer;
     transition: all .3s ease;
+    outline: none;
 }
 
 .btn:hover,
 .btn:active {
     background-color: rgba(98, 45, 136, .9);
     color: rgb(243, 183, 72);
+    outline: none;
+}
+
+.btn-delete {
+    outline: none;
 }
 
 .btn-delete:hover,
 .btn-delete:active {
     background-color: rgba(226, 10, 46, 0.6);
     color: white;
+    outline: none;
 }
 
 @media (min-width: 768px) {

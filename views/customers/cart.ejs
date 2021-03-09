@@ -43,14 +43,15 @@
                                     </td>
                                     <td>
                                         <form action="/cart-delete-item" method="POST">
-                                            <button class="btn-svg">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <input type="hidden" name="idCartItem" value="<%= prod.productId._id %>">
+                                            <button class="btn-svg" type="submit">
                                                 <i><svg class="equis" xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 24 24" width="31" height="31">
                                                         <path fill="none" d="M0 0h24v24H0z" />
                                                         <path
                                                             d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
                                                     </svg></i>
-                                                <input type="hidden" name="idCartItem" value="<%= prod.productId._id %>">
                                             </button>
                                         </form>
                                     </td>
@@ -78,8 +79,9 @@
 
                 <!-- Checkout button -->
                 <form action="/add-order" method="POST" class="align-center">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="idPedido">
                     <button type="submit" class="btn">Pedir ya!!</button>
-                    <input type="hidden" name="idPedido" value="">
                 </form>
 
                 <% } else { %>
